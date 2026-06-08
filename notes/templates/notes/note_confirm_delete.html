@@ -1,0 +1,17 @@
+{% extends "notes/base.html" %}
+
+{% block title %}Delete note{% endblock %}
+
+{% block card_class %}danger-panel{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'notes:note_detail' note.pk %}">← Back to note</a></p>
+    <h1>Delete note</h1>
+    <p>Are you sure you want to delete <strong>{{ note.title }}</strong>?</p>
+
+    <form method="post" class="actions">
+        {% csrf_token %}
+        <button class="button danger" type="submit">Yes, delete</button>
+        <a class="button secondary" href="{% url 'notes:note_detail' note.pk %}">Cancel</a>
+    </form>
+{% endblock %}

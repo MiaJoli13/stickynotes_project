@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sticky Notes{% endblock %}</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --accent: #2563eb;
+            --danger: #dc2626;
+            --border: #dbe2ee;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+            color: var(--text);
+        }
+
+        .container {
+            width: min(900px, calc(100% - 2rem));
+            margin: 2rem auto;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .actions, .inline-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .button.primary { background: var(--accent); color: white; }
+        .button.secondary { background: #eff6ff; color: var(--accent); border-color: #bfdbfe; }
+        .button.danger { background: #fef2f2; color: var(--danger); border-color: #fecaca; }
+
+        .muted { color: var(--muted); }
+
+        .note-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .note-list li {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.85rem;
+            background: #fbfdff;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-top: 0.35rem;
+            padding: 0.8rem 0.95rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            font: inherit;
+        }
+
+        textarea { resize: vertical; }
+
+        .danger-panel {
+            background: #fff7f7;
+            border-color: #fecaca;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main class="card {% block card_class %}{% endblock %}">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

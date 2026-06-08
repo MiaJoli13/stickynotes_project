@@ -1,0 +1,31 @@
+{% extends "notes/base.html" %}
+
+{% block title %}Sticky Notes{% endblock %}
+
+{% block content %}
+    <div class="topbar">
+        <div>
+            <h1>Sticky Notes</h1>
+            <p class="muted">Create, view, update, and delete your notes.</p>
+        </div>
+        <a class="button primary" href="{% url 'notes:note_create' %}">New note</a>
+    </div>
+
+    {% if notes %}
+        <ul class="note-list">
+            {% for note in notes %}
+                <li>
+                    <h2><a href="{% url 'notes:note_detail' note.pk %}">{{ note.title }}</a></h2>
+                    <p class="muted">{{ note.created_at|date:"M j, Y, g:i a" }}</p>
+                    <div class="inline-actions">
+                        <a class="button secondary" href="{% url 'notes:note_detail' note.pk %}">View</a>
+                        <a class="button secondary" href="{% url 'notes:note_update' note.pk %}">Edit</a>
+                        <a class="button danger" href="{% url 'notes:note_delete' note.pk %}">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No notes yet.</p>
+    {% endif %}
+{% endblock %}
